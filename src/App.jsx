@@ -5,7 +5,9 @@ import Auth from './Pages/Auth.jsx'
 import LinkPage from './Pages/Link.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import AppLayout from './Layout/AppLayout.jsx'
-
+import UrlProvider from './Contextapi.jsx'
+import supabase from './db/supabase.js'
+import Require from './components/Require.jsx'
 function App() {
   const router = createBrowserRouter(
     [
@@ -18,7 +20,7 @@ function App() {
           },
           {
             path: '/dashboard',
-            element: <Dashboard />
+            element:<Require><Dashboard /></Require> 
           },
           {
             path: '/auth',
@@ -26,7 +28,7 @@ function App() {
           },
           {
             path: '/link/:linkId',
-            element: <LinkPage />
+            element: <Require><LinkPage /></Require> 
           },
         ]
       }
@@ -34,7 +36,9 @@ function App() {
   )
   return (
     <>
-      <RouterProvider router={router} />
+      <UrlProvider>
+        <RouterProvider router={router} />
+      </UrlProvider>
     </>
   )
 }

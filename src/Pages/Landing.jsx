@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import {
@@ -7,15 +7,31 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { useNavigate } from 'react-router-dom'
 const Landing = () => {
+  const [longUrl, setLongUrl] = useState()
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (longUrl) navigate(`/auth?createNew=${longUrl}`)
+  }
   return (
     <div className='flex flex-col items-center justify-center min-h-screen  '>
       <h1 className=' sm:text-5xl lg:text-7xl text-3xl w-3/4 text-center sm:my-20 my-14 font-bold'>Shorten The Loooooong Link in Seconds!!!</h1>
-      <form className='flex-col sm:h-12 justify-center sm:flex-row flex md:w-1/2 items-center gap-4'>
-        <Input placeholder="Enter your URL" className='flex-1 h-full  p-4' type="url" />
-        <Button variant="destructive" className="h-full">Shorten!</Button>
+      <form
+        onSubmit={handleSubmit}
+        className='flex-col sm:h-12 justify-center sm:flex-row flex md:w-1/2 items-center gap-4'
+      >
+        <Input
+          onChange={(e) =>  setLongUrl(e.target.value) }
+          placeholder="Enter your URL"
+          className='flex-1 h-full  p-4'
+          type="url" />
+        <Button variant="destructive" type="submit" className="h-full">Shorten!</Button>
       </form>
+
       <img className='w-200 my-10 md:px-10' src="./luffy.jpg" alt="showimg" />
+      
       <Accordion className=" w-full px-10" type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger>Is it accessible?</AccordionTrigger>
