@@ -41,7 +41,11 @@ const Header = () => {
                                 </DropdownMenuItem>
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem>My Links</DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <Link to={"/dashboard"}>
+                                    My Links
+                                </Link>
+                            </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem >
                                 <span onClick={() => {
