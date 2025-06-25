@@ -75,11 +75,9 @@ const CreateLink = () => {
             await fnCreateUrl(blob);
         } catch (e) {
             const newErrors = {};
-
             e?.inner?.forEach((err) => {
                 newErrors[err.path] = err.message;
             });
-
             setErrors(newErrors);
         }
     };

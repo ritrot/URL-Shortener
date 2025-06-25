@@ -28,7 +28,7 @@ function App() {
             element: <Auth />
           },
           {
-            path: '/link/:linkId',
+            path: '/link/:id',
             element: <Require><LinkPage /></Require> 
           },
           {
