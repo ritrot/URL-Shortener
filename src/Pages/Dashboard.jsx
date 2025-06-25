@@ -13,22 +13,21 @@ import { Filter } from 'lucide-react'
 import UseFetch from "../hooks/UseFetch";
 import { UrlState } from '../Contextapi';
 import { getUrls } from '../db/apiUrls';
-import { getClicks } from '../db/apiClicks';
+import { getClicksForUrls } from '../db/apiClicks';
 import { Input } from "../components/ui/input";
 import LinkCard from '../components/LinkCard';
+import CreateLink from '../components/CreateLink';
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const { user } = UrlState();
   const { data: urls, error, loading, fn: fnUrls } = UseFetch(getUrls, user.id);
   const { data: clicks, error: clicksError, loading: clicksLoading, fn: fnClicks } = UseFetch(
-    getClicks,
-    urls?.map?.((url) => url.id)
+    getClicksForUrls,
+    urls?.map((url) => url.id)
   );
 
   useEffect(() => {
     fnUrls();
-    console.log(urls?.length);
-
   }, [])
 
   useEffect(() => {
@@ -64,7 +63,8 @@ const Dashboard = () => {
 
       <div className='flex justify-between'>
         <h1 className='text-4xl font-extrabold'>Links</h1>
-        <Button>Create</Button>
+        {/* <Button>Create</Button> */}
+        <CreateLink/>
       </div>
 
       <div className='relative'>

@@ -8,6 +8,7 @@ import AppLayout from './Layout/AppLayout.jsx'
 import UrlProvider from './Contextapi.jsx'
 import supabase from './db/supabase.js'
 import Require from './components/Require.jsx'
+import RedirectLink from './Pages/RedirectLink.jsx'
 function App() {
   const router = createBrowserRouter(
     [
@@ -30,6 +31,10 @@ function App() {
             path: '/link/:linkId',
             element: <Require><LinkPage /></Require> 
           },
+          {
+            path: '/:id',
+            element:<RedirectLink/>
+          }
         ]
       }
     ]
